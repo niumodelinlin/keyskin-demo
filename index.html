@@ -3,24 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>创新创业专题设计周 · 模块一 · 方向1 KeySkin</title>
+<title>创新创业专题设计周 · KeySkin 项目汇报</title>
 <style>
 :root{
-  /* 白底清新 · 设计 Token（参考 Skyline + PRECISION） */
-  --bg:#FFFFFF;          /* 主背景：纯白 */
-  --bg-2:#FAFAFB;        /* 极浅灰白，section 交替底色 */
-  --bg-soft:#F7F7F9;     /* 卡片底色 */
-  --line:#E8E8EC;        /* 浅灰分割线 */
-  --line-2:#F0F0F3;      /* 更浅分割线 */
-  --ink:#0A0A0A;         /* 主文黑 */
-  --ink-2:#1F1F23;       /* 标题黑 */
-  --paper:#4B5563;       /* 描述文字 灰 */
-  --muted:#6B7280;       /* 小英文 / 辅助文字（对比度提至 ≈4.5:1，达标） */
-  --accent:#9FE870;      /* 荧光绿/薄荷绿 主色 */
-  --accent-deep:#7FCC52; /* 深一点的绿 */
-  --accent-soft:#F0FBD9; /* 绿底高亮 */
-  --accent-tint:#E9F8D7; /* 更浅绿底 */
-  --warn:#FF8A65;        /* 极少量的橙红点缀 */
+  /* 白底清新 · 设计 Token（正文统一纯黑30%透明） */
+  --bg:#FFFFFF;
+  --bg-2:#FAFAFB;
+  --bg-soft:#F7F7F9;
+  --line:#E8E8EC;
+  --line-2:#F0F0F3;
+  --ink:#0A0A0A;
+  --ink-2:rgba(0,0,0,.6);
+  --paper:rgba(0,0,0,.3);
+  --muted:rgba(0,0,0,.45);
+  --accent:#9FE870;
+  --accent-deep:#7FCC52;
+  --accent-soft:#F0FBD9;
+  --accent-tint:#E9F8D7;
+  --warn:#FF8A65;
   --r-lg:24px;
   --r-md:16px;
   --r-sm:10px;
@@ -40,7 +40,7 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 
-/* ===== 全局背景弥散渐变（固定在视口，跨页连续） ===== */
+/* ===== 全局背景弥散渐变 ===== */
 .bg-fixed{position:fixed;inset:0;z-index:-2;pointer-events:none;background:
   radial-gradient(50% 40% at 10% 6%,rgba(159,232,112,.10),transparent 60%),
   radial-gradient(45% 38% at 92% 18%,rgba(99,102,241,.05),transparent 60%),
@@ -69,7 +69,7 @@ body{
 .brand .en{font-family:var(--font-en);font-size:11px;color:var(--muted);letter-spacing:1.5px;font-weight:600;text-transform:uppercase}
 .nav-links{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
 .nav-links a{
-  color:var(--paper);text-decoration:none;font-size:12.5px;font-weight:600;
+  color:var(--muted);text-decoration:none;font-size:12.5px;font-weight:600;
   padding:8px 12px;border-radius:999px;transition:.2s;white-space:nowrap;
 }
 .nav-links a:hover{color:rgba(10,10,10,.9);background:var(--bg-soft)}
@@ -95,7 +95,6 @@ body.demo .nav{transform:translateY(-100%) !important}
 .section.dark{background:transparent}
 .section.dark-2{background:transparent}
 
-/* 几何装饰（白底风格：极淡大英文文字，跟左边 .eyebrow 顶部对齐） */
 .deco{position:absolute;pointer-events:none;z-index:0}
 .deco-text{
   font-family:var(--font-en);font-weight:700;color:var(--accent-tint);
@@ -104,24 +103,26 @@ body.demo .nav{transform:translateY(-100%) !important}
   text-align:right;
   opacity:.7;
   text-transform:uppercase;
-  /* top 由 JS 动态赋值：= .eyebrow / .cover-eyebrow 文字顶部相对 .section 的偏移。
-     初始给 fallback，JS 加载后会覆盖。 */
   top:clamp(96px,12vh,140px);
   right:clamp(20px,7vw,110px);
-  /* 防止 transform/line-height 让大字母顶部偏移 */
   margin:0;padding:0;
 }
 
 .content{position:relative;z-index:2;max-width:1180px;width:100%;margin:0 auto}
 
-/* ===== Eyebrow（英文小标签 + 绿色圆点） ===== */
+/* ===== Eyebrow ===== */
 .eyebrow{
   display:inline-flex;align-items:center;gap:12px;
   font-family:var(--font-en);font-size:12.5px;font-weight:700;letter-spacing:2.5px;
-  color:var(--ink-2);margin-bottom:var(--s3);text-transform:uppercase;
+  color:rgba(10,10,10,.9);margin-bottom:var(--s3);text-transform:uppercase;
 }
 .eyebrow .dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--accent);flex:none}
 .eyebrow .sep{color:var(--line);font-weight:400}
+/* 卡片内 eyebrow（课程要求/母体来源/国内市场等）字号比正文 16px 大 6pt ≈ 8px，取 24px */
+.card .eyebrow{
+  font-family:var(--font-title);font-size:24px;font-weight:900;letter-spacing:0;text-transform:none;color:rgba(10,10,10,.9);margin-bottom:var(--s2)
+}
+.card .eyebrow .dot{width:10px;height:10px}
 
 /* ===== 标题与副标题 ===== */
 .section-title{font-family:var(--font-title);font-size:clamp(34px,5.2vw,64px);font-weight:900;line-height:1.06;letter-spacing:-1.5px;color:rgba(10,10,10,.9)}
@@ -135,8 +136,8 @@ body.demo .nav{transform:translateY(-100%) !important}
   display:inline-block;
 }
 .section-title .em{font-style:italic;font-weight:900}
-.section-sub{font-size:clamp(16px,1.7vw,20px);color:var(--paper);margin-top:var(--s3);max-width:760px}
-.section-kicker{font-size:clamp(14px,1.4vw,18px);font-weight:700;color:var(--ink-2);margin-top:12px;max-width:760px;letter-spacing:-.2px}
+.section-sub{font-size:clamp(16px,1.7vw,20px);color:rgba(0,0,0,.5);margin-top:var(--s3);max-width:760px;line-height:1.7}
+.section-kicker{font-size:clamp(14px,1.4vw,18px);font-weight:700;color:rgba(10,10,10,.9);margin-top:12px;max-width:760px;letter-spacing:-.2px}
 
 /* ===== 进入动画 ===== */
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
@@ -144,7 +145,7 @@ body.demo .nav{transform:translateY(-100%) !important}
 .reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}
 .reveal.d4{transition-delay:.32s}.reveal.d5{transition-delay:.40s}.reveal.d6{transition-delay:.48s}
 
-/* ===== 通用卡片（毛玻璃：通透玻璃 + 多层反射） ===== */
+/* ===== 通用卡片 ===== */
 .card{
   background:rgba(255,255,255,.42);
   border:1px solid rgba(255,255,255,.8);
@@ -163,36 +164,54 @@ body.demo .nav{transform:translateY(-100%) !important}
 .g4{grid-template-columns:repeat(4,1fr)}
 @media(max-width:880px){.g2,.g3,.g4{grid-template-columns:1fr}}
 
-/* ===== Chip（基础 + 热绿色 hot） ===== */
+/* 卡片一级小标题：统一 22px */
+.card-title{font-family:var(--font-title);font-size:22px;font-weight:900;color:rgba(10,10,10,.9);margin-bottom:12px;letter-spacing:-.5px;line-height:1.2}
+
+/* ===== Chip ===== */
 .chip{
   display:inline-flex;align-items:center;gap:8px;
   background:var(--bg);border:1px solid var(--line);border-radius:999px;
-  padding:8px 16px;font-size:13px;font-weight:600;color:var(--ink-2);
+  padding:8px 16px;font-size:13px;font-weight:600;color:rgba(10,10,10,.9);
 }
 .chip .en{font-family:var(--font-en);font-size:11px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase}
 .chip.hot{background:var(--accent);border-color:transparent;color:rgba(10,10,10,.9);font-weight:800}
-.chip.outline{border:1.5px solid var(--ink);background:transparent}
+.chip.outline{border:1.5px solid rgba(10,10,10,.9);background:transparent}
+
+/* ===== 正文颜色统一：纯黑30%透明度 ===== */
+.section p,.section .sum,.section .desc,.section .note,
+.vs-card p,.reason p,.stage p,.take p,.map-item .ks,.map-item p,
+.branch .leaf,.dim p,.bmc .b p,.duo .mini .sum,.duo .mini .mlist li,
+.pcard .pdesc,.pool-note,.pcard .pmeta .mt,.team p,.finance p,.growth p,.value p,.future p{
+  color:var(--paper);
+}
+
+/* 辅助文字 45% 黑 */
+.section .src,.section .en,.cover-foot .en,.pageno,.nav-links a,.mini .src{
+  color:var(--muted);
+}
+
+/* 依据小字：纯黑30% + 左线70%绿 */
+.basis{margin-top:10px;padding-left:10px;border-left:3px solid rgba(159,232,112,.7);font-size:12px;line-height:1.55;color:var(--paper);font-weight:500;opacity:1}
 
 /* ===== Slide1 Cover ===== */
 .cover-eyebrow{
   display:inline-flex;align-items:center;gap:12px;
   font-family:var(--font-en);font-size:12px;font-weight:700;letter-spacing:3px;
-  color:var(--ink-2);text-transform:uppercase;
+  color:rgba(10,10,10,.9);text-transform:uppercase;
   padding:8px 16px;border:1px solid var(--line);border-radius:999px;background:var(--bg);
 }
 .cover-eyebrow .star{color:var(--accent-deep)}
 .cover-title{font-family:var(--font-title);font-size:clamp(54px,9vw,128px);font-weight:900;line-height:.95;letter-spacing:-4px;margin:var(--s3) 0;color:rgba(10,10,10,.9)}
 .cover-title .acc{color:var(--accent-deep);font-style:italic}
-.cover-title .line2{display:block;font-size:.62em;color:var(--ink-2);margin-top:8px;letter-spacing:-2px}
+.cover-title .line2{display:block;font-size:.62em;color:rgba(10,10,10,.9);margin-top:8px;letter-spacing:-2px}
 .cover-meta{display:flex;gap:var(--s2);flex-wrap:wrap;margin-top:var(--s5)}
 .cover-foot{
   display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:var(--s4);
   margin-top:var(--s6);padding-top:var(--s4);
 }
-.cover-foot .en{font-family:var(--font-en);font-size:11.5px;color:rgba(10,10,10,.5);letter-spacing:2px;text-transform:uppercase}
-.cover-foot .cn{font-size:15px;font-weight:700;color:var(--ink-2);margin-top:4px}
+.cover-foot .cn{font-size:15px;font-weight:700;color:rgba(10,10,10,.9);margin-top:4px}
 
-/* ===== Slide2 对比 ===== */
+/* ===== 卡片与模块通用 ===== */
 .vs-wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:var(--s4);align-items:stretch}
 @media(max-width:880px){.vs-wrap{grid-template-columns:1fr}}
 .vs-card{border-radius:var(--r-lg);padding:var(--s5);position:relative;overflow:hidden;
@@ -204,46 +223,45 @@ body.demo .nav{transform:translateY(-100%) !important}
 .vs-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-en);font-size:11.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:999px}
 .vs-card.win .vs-tag{background:var(--accent);color:rgba(10,10,10,.9)}
 .vs-card.lose .vs-tag{background:rgba(255,255,255,.6);color:var(--paper);border:1px solid rgba(232,232,236,.6)}
-.vs-h{font-family:var(--font-title);font-size:30px;font-weight:900;margin:16px 0 var(--s3);letter-spacing:-1px;color:rgba(10,10,10,.9)}
-.vs-card p{font-size:15.5px;color:var(--paper);line-height:1.65}
+.vs-h{font-family:var(--font-title);font-size:28px;font-weight:900;margin:16px 0 var(--s3);letter-spacing:-1px;color:rgba(10,10,10,.9)}
 .reason{display:block;padding:16px 0;line-height:1.2}
 .reason .n{width:42px;height:42px;border-radius:12px;background:var(--accent);display:grid;place-items:center;font-family:var(--font-title);font-weight:900;font-size:18px;color:rgba(10,10,10,.9);margin:0 0 8px}
-.reason .en{display:block;font-family:var(--font-en);font-size:11px;color:rgba(10,10,10,.5);letter-spacing:1.5px;text-transform:uppercase;margin:0 0 4px;line-height:1}
-.reason h4{font-family:var(--font-title);font-size:19px;font-weight:800;margin:0 0 8px;color:rgba(10,10,10,.9);letter-spacing:-.5px;line-height:1.25}
-.reason p{font-size:14.5px;color:var(--paper);line-height:1.55;margin:0}
+.reason .en{display:block;font-family:var(--font-en);font-size:11px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin:0 0 4px;line-height:1}
+.reason h4{font-family:var(--font-title);font-size:22px;font-weight:900;margin:0 0 8px;color:rgba(10,10,10,.9);letter-spacing:-.5px;line-height:1.25}
+.reason p{font-size:14.5px;line-height:1.55;margin:0}
 
-/* ===== Slide3 观夏路径 ===== */
+/* ===== 时间轴 / 步骤 ===== */
 .timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s3);margin-top:var(--s5)}
 @media(max-width:880px){.timeline{grid-template-columns:1fr 1fr}}
 .stage{border-radius:var(--r-md);padding:var(--s4);background:rgba(255,255,255,.42);border:1px solid rgba(255,255,255,.8);position:relative;
   backdrop-filter:blur(28px) saturate(1.6);-webkit-backdrop-filter:blur(28px) saturate(1.6);
   box-shadow:0 4px 20px 0 rgba(0,0,0,.05),inset 0 1px 0 rgba(255,255,255,.9),inset 0 -1px 0 rgba(255,255,255,.1)}
 .stage .num{font-family:var(--font-en);font-size:11.5px;font-weight:700;color:rgba(159,232,112,.7);letter-spacing:2.5px;text-transform:uppercase}
-.stage h4{font-family:var(--font-title);font-size:21px;font-weight:900;margin:8px 0 8px;color:rgba(10,10,10,.9);letter-spacing:-.5px}
-.stage p{font-size:14.5px;color:var(--paper);line-height:1.65}
+.stage h4{font-family:var(--font-title);font-size:22px;font-weight:900;margin:8px 0 8px;color:rgba(10,10,10,.9);letter-spacing:-.5px}
+.stage p{font-size:14.5px;line-height:1.65}
 .stage .bar{width:40px;height:4px;border-radius:999px;background:var(--accent);margin-bottom:14px}
 .takeaways{margin-top:var(--s5);display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3)}
 @media(max-width:880px){.takeaways{grid-template-columns:1fr}}
 .take{background:rgba(255,255,255,.42);border:1px solid rgba(255,255,255,.8);border-radius:var(--r-md);padding:var(--s4);
   backdrop-filter:blur(28px) saturate(1.6);-webkit-backdrop-filter:blur(28px) saturate(1.6);
   box-shadow:0 4px 20px 0 rgba(0,0,0,.05),inset 0 1px 0 rgba(255,255,255,.9),inset 0 -1px 0 rgba(255,255,255,.1)}
-.take h4{font-family:var(--font-title);font-size:16px;font-weight:900;color:rgba(10,10,10,.9);margin-bottom:8px;letter-spacing:-.3px}
-.take p{font-size:14.5px;color:var(--paper)}
+.take h4{font-family:var(--font-title);font-size:17px;font-weight:900;color:rgba(10,10,10,.9);margin-bottom:8px;letter-spacing:-.3px}
+.take p{font-size:14.5px;}
 
-/* ===== Slide4 方法论映射 ===== */
+/* ===== 方法论映射 ===== */
 .map{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s4)}
 @media(max-width:880px){.map{grid-template-columns:1fr}}
 .map-item{border-radius:var(--r-md);padding:var(--s4);background:rgba(255,255,255,.42);border:1px solid rgba(255,255,255,.8);
   backdrop-filter:blur(28px) saturate(1.6);-webkit-backdrop-filter:blur(28px) saturate(1.6);
   box-shadow:0 4px 20px 0 rgba(0,0,0,.05),inset 0 1px 0 rgba(255,255,255,.9),inset 0 -1px 0 rgba(255,255,255,.1)}
 .map-item .m1{font-family:var(--font-en);font-size:11.5px;font-weight:700;color:rgba(159,232,112,.7);letter-spacing:2px;text-transform:uppercase}
-.map-item h4{font-family:var(--font-title);font-size:20px;font-weight:900;margin:8px 0 8px;color:rgba(10,10,10,.9);letter-spacing:-.5px}
+.map-item h4{font-family:var(--font-title);font-size:22px;font-weight:900;margin:8px 0 8px;color:rgba(10,10,10,.9);letter-spacing:-.5px}
 .map-item .arrow{font-family:var(--font-en);color:rgba(159,232,112,.7);font-weight:800;font-size:12px;margin:12px 0 8px;letter-spacing:2px}
-.map-item .ks{font-size:15px;color:var(--ink-2);background:rgba(255,255,255,.42);border:1px solid rgba(255,255,255,.8);padding:12px 16px;border-radius:10px;line-height:1.65;
+.map-item .ks{font-size:15px;color:rgba(10,10,10,.9);background:rgba(255,255,255,.42);border:1px solid rgba(255,255,255,.8);padding:12px 16px;border-radius:10px;line-height:1.65;
   backdrop-filter:blur(20px) saturate(1.5);-webkit-backdrop-filter:blur(20px) saturate(1.5);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.9),inset 0 -1px 0 rgba(255,255,255,.1)}
 
-/* ===== Slide5 思维导图 ===== */
+/* ===== 思维导图 / 分支 ===== */
 .mindmap{position:relative;margin-top:var(--s5)}
 .mind-center{
   max-width:560px;margin:0 auto var(--s6);text-align:center;
@@ -263,36 +281,31 @@ body.demo .nav{transform:translateY(-100%) !important}
 .branch{border-radius:var(--r-md);padding:var(--s4);background:rgba(255,255,255,.42);border:1px solid rgba(255,255,255,.8);
   backdrop-filter:blur(28px) saturate(1.6);-webkit-backdrop-filter:blur(28px) saturate(1.6);
   box-shadow:0 4px 20px 0 rgba(0,0,0,.05),inset 0 1px 0 rgba(255,255,255,.9),inset 0 -1px 0 rgba(255,255,255,.1)}
-.branch .bt{font-family:var(--font-title);font-size:18px;font-weight:900;margin-bottom:var(--s3);display:flex;align-items:center;gap:12px;color:rgba(10,10,10,.9);letter-spacing:-.3px}
+.branch .bt{font-family:var(--font-title);font-size:22px;font-weight:900;margin-bottom:var(--s3);display:flex;align-items:center;gap:12px;color:rgba(10,10,10,.9);letter-spacing:-.5px}
 .branch .bt .ic{width:14px;height:14px;border-radius:4px;flex:none}
 .branch:nth-child(1) .bt .ic{background:var(--accent)}
 .branch:nth-child(2) .bt .ic{background:var(--ink)}
 .branch:nth-child(3) .bt .ic{background:var(--accent-deep)}
 .branch:nth-child(4) .bt .ic{background:var(--paper)}
-.leaf{font-size:14.5px;padding:12px 16px;margin-bottom:8px;background:rgba(255,255,255,.42);border:1px solid rgba(255,255,255,.8);border-radius:10px;color:var(--ink-2);display:flex;align-items:center;gap:8px;
+.leaf{font-size:14.5px;padding:12px 16px;margin-bottom:8px;background:rgba(255,255,255,.42);border:1px solid rgba(255,255,255,.8);border-radius:10px;color:var(--paper);display:flex;align-items:center;gap:8px;
   backdrop-filter:blur(20px) saturate(1.5);-webkit-backdrop-filter:blur(20px) saturate(1.5);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.9),inset 0 -1px 0 rgba(255,255,255,.1)}
 .leaf::before{content:"→";font-family:var(--font-en);color:var(--accent-deep);font-weight:700;font-size:13px;flex:none}
 
-/* ===== Slide6 评估矩阵 ===== */
+/* ===== 评估矩阵 ===== */
 .matrix{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3);margin-top:var(--s5)}
 @media(max-width:880px){.matrix{grid-template-columns:1fr}}
 .dim{border-radius:var(--r-md);padding:var(--s4);background:rgba(255,255,255,.42);border:1px solid rgba(255,255,255,.8);
   backdrop-filter:blur(28px) saturate(1.6);-webkit-backdrop-filter:blur(28px) saturate(1.6);
   box-shadow:0 4px 20px 0 rgba(0,0,0,.05),inset 0 1px 0 rgba(255,255,255,.9),inset 0 -1px 0 rgba(255,255,255,.1)}
-.dim .dh{font-family:var(--font-title);font-size:18px;font-weight:900;margin-bottom:8px;display:flex;align-items:center;gap:12px;color:rgba(10,10,10,.9);letter-spacing:-.3px}
+.dim .dh{font-family:var(--font-title);font-size:22px;font-weight:900;margin-bottom:8px;display:flex;align-items:center;gap:12px;color:rgba(10,10,10,.9);letter-spacing:-.5px}
 .dim .dh .dotc{width:12px;height:12px;border-radius:50%;flex:none;background:var(--accent)}
-.dim p{font-size:14.5px;color:var(--paper);line-height:1.65}
-.basis{margin-top:10px;padding-left:10px;border-left:3px solid rgba(159,232,112,.7);font-size:12px;line-height:1.55;color:var(--ink-2);font-weight:500;opacity:.3}
-
-/* s1-s9 所有正文段落统一 60% 透明度（标题/按钮/徽章/评分条不受影响） */
-.section p,.section .sum,.section .desc,.section .note{opacity:.6}
-.section .stage p,.section .take p,.section .map-item .ks,.section .dim p,.section .b p,.section .leaf,.section .pc .desc,.section .bmc .b p,.section .duo .mini .sum{opacity:.6}
+.dim p{font-size:14.5px;line-height:1.65}
 .score{margin-top:16px;display:flex;gap:4px}
 .score i{flex:1;height:7px;border-radius:4px;background:var(--line)}
 .score i.on{background:var(--accent)}
 
-/* ===== Slide7 台阶②③（上下结构 + 整块大面板） ===== */
+/* ===== 紧凑列表 ===== */
 .duo{
   display:grid;grid-template-columns:1fr;gap:0;
   margin-top:var(--s4);
@@ -305,13 +318,10 @@ body.demo .nav{transform:translateY(-100%) !important}
   position:relative;overflow:hidden;
 }
 @media(max-width:1100px){.duo{grid-template-columns:1fr}}
-/* 大面板内部两栏：上下堆叠（STEP ② 在上，STEP ③ 在下），去 card 化，纯布局 */
 .duo>.col{background:transparent;border:0;padding:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;border-radius:0}
 .duo>.col+.col{border-top:1px solid rgba(10,10,10,.06);padding-top:var(--s5);margin-top:var(--s5)}
-@media(max-width:1100px){.duo>.col+.col{border-top:1px solid rgba(10,10,10,.06);padding-top:var(--s5);margin-top:var(--s5)}}
-.duo>.col h3{font-family:var(--font-title);font-size:24px;font-weight:900;margin-bottom:8px;color:rgba(10,10,10,.9);letter-spacing:-.5px}
+.duo>.col h3{font-family:var(--font-title);font-size:22px;font-weight:900;margin-bottom:8px;color:rgba(10,10,10,.9);letter-spacing:-.5px}
 .duo>.col .step-no{font-family:var(--font-en);font-size:11.5px;font-weight:700;color:rgba(159,232,112,.7);letter-spacing:2.5px;text-transform:uppercase}
-/* 紧凑 row：STEP ② 6 mini → 3 列 × 2 行；STEP ③ 3 mini → 3 列 × 1 行；mini 不做 card，做行 */
 .duo>.col .mini-list{display:grid;gap:var(--s4);margin-top:var(--s4)}
 .duo>.col.v .mini-list{grid-template-columns:repeat(3,1fr)}
 .duo>.col.c .mini-list{grid-template-columns:repeat(3,1fr)}
@@ -328,39 +338,26 @@ body.demo .nav{transform:translateY(-100%) !important}
   border:1px solid var(--accent-deep);
 }
 .duo>.col .mini .b.dark{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.duo>.col .mini .b.outline{background:var(--bg);color:rgba(10,10,10,.9);border:1.5px solid var(--ink)}
+.duo>.col .mini .b.outline{background:var(--bg);color:rgba(10,10,10,.9);border:1.5px solid rgba(10,10,10,.9)}
 .duo>.col .mini .b.accent-soft{background:var(--accent-soft);color:rgba(10,10,10,.9);border-color:transparent}
-.duo>.col .mini h5{font-family:var(--font-title);font-size:16px;font-weight:900;color:rgba(10,10,10,.9);letter-spacing:-.3px;line-height:1.2;margin-bottom:8px}
-.duo>.col .mini .sum{font-size:12.5px;color:var(--ink-2);margin-top:4px;font-weight:600;line-height:1.5}
-/* s7 正文降透明度，标题与徽章保持清晰 */
-#s7 .duo>.col .mini .sum{opacity:.4}
+.duo>.col .mini h5{font-family:var(--font-title);font-size:17px;font-weight:900;color:rgba(10,10,10,.9);letter-spacing:-.3px;line-height:1.2;margin-bottom:8px}
+.duo>.col .mini .sum{font-size:12.5px;color:var(--paper);margin-top:4px;font-weight:600;line-height:1.5}
 .duo>.col .mini .mlist{margin-top:8px;list-style:none;padding:0;display:flex;flex-direction:column;gap:4px}
-.duo>.col .mini .mlist li{font-size:12px;color:var(--ink-2);padding-left:16px;position:relative;line-height:1.5}
+.duo>.col .mini .mlist li{font-size:12px;color:var(--paper);padding-left:16px;position:relative;line-height:1.5}
 .duo>.col .mini .mlist li::before{content:"—";position:absolute;left:0;top:-1px;color:var(--accent-deep);font-weight:700}
-.duo>.col .mini .src{font-size:11px;color:var(--paper);margin-top:8px;letter-spacing:.3px}
+.duo>.col .mini .src{font-size:11px;color:var(--muted);margin-top:8px;letter-spacing:.3px}
 .duo>.col .mini .src b{color:var(--accent-deep);font-weight:800}
 
-/* ===== Slide8 商业模式 + 收尾 ===== */
+/* ===== 商业模式 / 营运创新 ===== */
 .bmc{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3);margin-top:var(--s5)}
 @media(max-width:880px){.bmc{grid-template-columns:1fr}}
 .bmc .b{border-radius:var(--r-md);padding:var(--s4);background:rgba(255,255,255,.42);border:1px solid rgba(255,255,255,.8);
   backdrop-filter:blur(28px) saturate(1.6);-webkit-backdrop-filter:blur(28px) saturate(1.6);
   box-shadow:0 4px 20px 0 rgba(0,0,0,.05),inset 0 1px 0 rgba(255,255,255,.9),inset 0 -1px 0 rgba(255,255,255,.1)}
-.bmc .b h4{font-family:var(--font-title);font-size:18px;font-weight:900;margin-bottom:8px;color:rgba(10,10,10,.9);letter-spacing:-.3px}
-.bmc .b p{font-size:14.5px;color:var(--paper);line-height:1.65}
-.closing{margin-top:var(--s6);text-align:center}
-.closing .big{font-family:var(--font-title);font-size:clamp(28px,4vw,52px);font-weight:900;letter-spacing:-1.5px;color:rgba(10,10,10,.9);line-height:1.15}
-.thanks{font-size:15px;color:var(--paper);margin-top:var(--s3);font-family:var(--font-en);letter-spacing:1px}
-.tag-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:var(--s4)}
-.chip-btn{
-  font-family:var(--font-en);font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
-  border:1px solid var(--line);background:var(--bg);color:var(--ink-2);
-  padding:8px 16px;border-radius:999px;cursor:pointer;transition:.25s;
-}
-.chip-btn:hover{background:var(--bg-soft);border-color:var(--ink);color:rgba(10,10,10,.9);transform:translateY(-2px)}
-.chip-btn.active{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.bmc .b h4{font-family:var(--font-title);font-size:22px;font-weight:900;margin-bottom:8px;color:rgba(10,10,10,.9);letter-spacing:-.5px}
+.bmc .b p{font-size:14.5px;line-height:1.65}
 
-/* 页脚页码 */
+/* ===== 页脚页码 ===== */
 .pageno{
   position:absolute;bottom:32px;left:clamp(20px,7vw,110px);
   font-family:var(--font-en);font-size:12px;font-weight:700;color:var(--muted);z-index:2;letter-spacing:2px;
@@ -368,7 +365,22 @@ body.demo .nav{transform:translateY(-100%) !important}
 }
 .pageno .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent-deep)}
 
-/* ===== Slide9 大选题池 ===== */
+/* ===== 团队协作 / 财务 / 成长 / 价值 / 未来 专用卡片 ===== */
+.team-card,.finance-card,.growth-card,.value-card,.future-card{
+  background:rgba(255,255,255,.42);border:1px solid rgba(255,255,255,.8);border-radius:var(--r-md);padding:var(--s4);
+  backdrop-filter:blur(28px) saturate(1.6);-webkit-backdrop-filter:blur(28px) saturate(1.6);
+  box-shadow:0 4px 20px 0 rgba(0,0,0,.05),inset 0 1px 0 rgba(255,255,255,.9),inset 0 -1px 0 rgba(255,255,255,.1);
+}
+.team-card h4,.finance-card h4,.growth-card h4,.value-card h4,.future-card h4{
+  font-family:var(--font-title);font-size:22px;font-weight:900;color:rgba(10,10,10,.9);margin-bottom:8px;letter-spacing:-.5px;
+}
+.team-card p,.finance-card p,.growth-card p,.value-card p,.future-card p{font-size:14.5px;line-height:1.65}
+
+/* ===== 未来规划 ===== */
+.future-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3);margin-top:var(--s5)}
+@media(max-width:880px){.future-grid{grid-template-columns:1fr}}
+
+/* ===== 备用项目池 ===== */
 .pool{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s3);margin-top:var(--s5)}
 @media(max-width:1180px){.pool{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:620px){.pool{grid-template-columns:1fr}}
@@ -418,70 +430,36 @@ body.demo .nav{transform:translateY(-100%) !important}
 .pool-note .lk .leg.opt i{background:var(--bg);border:1px solid var(--line)}
 @media(max-width:760px){.pool-note{flex-direction:column;align-items:flex-start;gap:8px}}
 
-/* ===== 移动端适配（≤768px） ===== */
+/* ===== 移动端适配 ===== */
 @media(max-width:768px){
-  /* 关键修复：section 不再强约束 100vh 居中 + overflow:hidden，否则内容超屏被上下裁切 → 视觉"压成一团" */
-  .section{
-    min-height:auto;
-    justify-content:flex-start;
-    overflow:visible;
-    padding:96px 16px 56px;
-  }
-  /* 装饰大英文：移动端缩到右上角做淡背景，绝不遮挡正文（JS 对齐已在移动端关闭） */
-  .deco-text{
-    font-size:32px !important;
-    line-height:1 !important;
-    letter-spacing:-1px;
-    top:10px !important;
-    right:12px !important;
-    bottom:auto !important;
-    opacity:.18;
-  }
-  /* 标题缩放，避免横向溢出 */
+  .section{min-height:auto;justify-content:flex-start;overflow:visible;padding:96px 16px 56px}
+  .deco-text{font-size:32px !important;line-height:1 !important;letter-spacing:-1px;top:10px !important;right:12px !important;bottom:auto !important;opacity:.18}
   .section-title{font-size:clamp(26px,7vw,38px);letter-spacing:-.8px;line-height:1.12}
   .cover-title{font-size:clamp(36px,10.5vw,56px);letter-spacing:-2px}
   .cover-title .line2{font-size:.58em;letter-spacing:-1px}
   .vs-h{font-size:clamp(21px,5.6vw,28px)}
   .mind-center .h{font-size:clamp(24px,6vw,36px)}
   .section-sub,.section-kicker{font-size:15px;max-width:100%}
-
-  /* 导航：品牌 + 演示按钮留在首行，9 个链接改为横向滚动条 */
   .nav{flex-wrap:wrap;padding:8px 16px;gap:8px}
-  .nav-links{
-    order:3;flex-basis:100%;width:100%;margin-left:0;
-    flex-wrap:nowrap;overflow-x:auto;
-    -webkit-overflow-scrolling:touch;
-    padding-bottom:4px;scrollbar-width:none;
-  }
+  .nav-links{order:3;flex-basis:100%;width:100%;margin-left:0;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;scrollbar-width:none}
   .nav-links::-webkit-scrollbar{display:none}
   .nav-links a{padding:8px 12px;font-size:12px;white-space:nowrap}
   .demo-btn{margin-left:auto;padding:8px 16px;font-size:12px}
-
-  /* 卡片内边距收紧 */
-  .card,.vs-card,.stage,.take,.map-item,.mind-center,.branch,.dim,.bmc .b,.pcard,.duo{
-    padding:20px 16px;
-  }
+  .card,.vs-card,.stage,.take,.map-item,.mind-center,.branch,.dim,.bmc .b,.duo,.team-card,.finance-card,.growth-card,.value-card,.future-card{padding:20px 16px}
   .duo>.col{padding-left:0}
-
-  /* 封面底栏与标签堆叠 */
   .cover-foot{flex-direction:column;align-items:flex-start;gap:16px}
   .cover-meta{gap:8px}
   .cover-meta .chip{font-size:12px;padding:8px 12px}
-
-  /* 页码缩小 */
   .pageno{font-size:12px;left:18px;bottom:14px}
-
-  /* 分支 / 时间轴 在窄屏保持 2 列（够用） */
   .branches{grid-template-columns:1fr 1fr}
   .timeline{grid-template-columns:1fr 1fr}
 }
 @media(max-width:480px){
   .section{padding:80px 16px 48px}
-  .deco-text{display:none}            /* 极窄屏直接隐藏装饰大字，最干净 */
+  .deco-text{display:none}
   .branches{grid-template-columns:1fr}
   .timeline{grid-template-columns:1fr}
   .cover-title{font-size:clamp(32px,9vw,46px)}
-  .pool{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -491,341 +469,398 @@ body.demo .nav{transform:translateY(-100%) !important}
 <div class="progress" id="progress"></div>
 
 <nav class="nav" id="nav">
-  <div class="brand"><span class="dot"></span>KEYSKIN <span class="en">/ Module 01</span></div>
+  <div class="brand"><span class="dot"></span>KEYSKIN <span class="en">/ Project</span></div>
   <div class="nav-links">
-    <a href="#s1" class="active">01 · 封面</a>
-    <a href="#s2">02 · 方向</a>
-    <a href="#s3">03 · 案例</a>
-    <a href="#s4">04 · 方法</a>
-    <a href="#s5">05 · 子题</a>
-    <a href="#s6">06 · 评估</a>
-    <a href="#s7">07 · 调研</a>
-    <a href="#s8">08 · 模式</a>
-    <a href="#s9">09 · 选题</a>
+    <a href="#s1" class="active">封面</a>
+    <a href="#s2">背景</a>
+    <a href="#s3">调研</a>
+    <a href="#s4">痛点</a>
+    <a href="#s5">方案</a>
+    <a href="#s6">创新</a>
+    <a href="#s7">产品</a>
+    <a href="#s8">营运</a>
+    <a href="#s9">历程</a>
+    <a href="#s10">团队</a>
+    <a href="#s11">财务</a>
+    <a href="#s12">成长</a>
+    <a href="#s13">价值</a>
+    <a href="#s14">规划</a>
+    <a href="#s15">备用</a>
   </div>
   <button class="demo-btn" id="demoBtn">演示模式</button>
 </nav>
 
-<!-- Slide 1 -->
+<!-- Slide 1 项目封面 -->
 <section class="section dark" id="s1">
   <div class="deco deco-text" style="color:var(--accent-tint);line-height:.92">KEY<br>SKIN</div>
-
   <div class="content">
-    <div class="cover-eyebrow reveal">
-      <span>Innovation × Entrepreneurship × Design Week</span>
-    </div>
+    <div class="cover-eyebrow reveal"><span class="star">★</span><span>Innovation × Entrepreneurship × Design Week</span></div>
     <h1 class="cover-title reveal d1">
-      <span class="acc">Direction</span> ONE<br>
-      <span class="line2">从课堂作业到可孵化产品</span>
+      <span class="acc">KeySkin</span><br>
+      <span class="line2">键盘皮肤共创平台</span>
     </h1>
-    <p class="section-sub reveal d2">围绕已沉淀的设计项目作为原型，孵化可落地、可答辩、可扩展的创新产品提案。</p>
+    <p class="section-sub reveal d2">以视觉传达为主导，从课堂作业孵化可落地的创作者经济产品。围绕输入法皮肤这一高频、低门槛、强个性的入口，连接独立设计师与Z世代用户，构建「审美驱动 + 创作者分润」的新型皮肤生态。</p>
     <div class="cover-meta reveal d3">
-      <span class="chip hot">母体 · KeySkin 键盘皮肤工坊</span>
-      <span class="chip">案例锚定 · 观夏 to summer</span>
-      <span class="chip"><span class="en">Form</span>课堂汇报</span>
+      <span class="chip hot">武汉设计工程学院 · 公共艺术学院</span>
+      <span class="chip">视觉传达设计 23 级</span>
+      <span class="chip"><span class="en">Module</span>创新创业专题设计周</span>
     </div>
-
     <div class="cover-foot reveal d4">
-      <div><div class="en">Module 01 · Practice</div><div class="cn">创新创业专题设计周 · 实践作业</div></div>
-      <div><div class="en">Subject</div><div class="cn">方向1 孵化往期设计项目</div></div>
-      <div><div class="en">N · 9 Slides</div><div class="cn">案例 + 选题 + 四台阶</div></div>
+      <div><div class="en">Subject</div><div class="cn">方向1 · 孵化往期设计项目</div></div>
+      <div><div class="en">Form</div><div class="cn">课堂汇报网页</div></div>
+      <div><div class="en">N · 14 Modules</div><div class="cn">从背景到未来规划</div></div>
     </div>
   </div>
-  <div class="pageno"><span class="dot"></span>01 / 09</div>
+  <div class="pageno"><span class="dot"></span>01 / 15</div>
 </section>
 
-<!-- Slide 2 -->
+<!-- Slide 2 项目背景 -->
 <section class="section dark-2" id="s2">
-  <div class="deco deco-text" style="color:var(--accent-tint)">WHY</div>
-
+  <div class="deco deco-text" style="color:var(--accent-tint)">BACK<br>GROUND</div>
   <div class="content">
-    <div class="eyebrow reveal"><span class="dot"></span><span>Why Direction One</span><span class="sep">/</span><span>Reasoning</span></div>
-    <h2 class="section-title reveal d1">为什么是 <span class="num">方向 1</span> ？</h2>
-    <div class="vs-wrap reveal d2" style="margin-top:var(--s5)">
-      <div class="vs-card win">
-        <div class="vs-tag">✓ SELECTED · VCD-LED</div>
-        <div class="vs-h">方向1 · 孵化往期设计项目</div>
-        <p>视觉传达是绝对主角：项目与课程沉淀的原型资产可直接孵化，从选题到答辩素材链路最短。</p>
+    <div class="eyebrow reveal"><span class="dot"></span><span>01 · Project Background</span></div>
+    <h2 class="section-title reveal d1"><span class="num">项目背景</span></h2>
+    <p class="section-sub reveal d2">创新创业专题设计周要求从「课堂作业」中孵化出具备答辩、展示与落地潜力的产品方案。KeySkin 母体源于视觉传达课程中关于「输入法皮肤个性化」的课题沉淀，经过筛选与重构，成为本次方向1的首选孵化对象。</p>
+    <div class="grid g2 reveal d3" style="margin-top:var(--s5)">
+      <div class="card">
+        <div class="eyebrow" style="margin-bottom:var(--s2)"><span class="dot"></span><span>课程要求</span></div>
+        <p>方向1 要求「以已沉淀的设计项目为原型，孵化可落地、可答辩、可扩展的创新产品提案」。这意味着视觉传达不再只是做视觉外壳，而需要从选题、调研、定位、商业模式到展示形态，形成完整闭环。KeySkin 作为课程作业，天然具备原型资产，正好契合这一要求。</p>
+        <div class="basis">依据：创新创业专题设计周任务书 · 方向1 孵化往期设计项目。</div>
       </div>
-      <div class="vs-card lose">
-        <div class="vs-tag">vs · COMPARED</div>
-        <div class="vs-h">方向2 · 新文科创新创业</div>
-        <p>多数题目（金融科技、银发经济…）底层逻辑不由设计主导，视觉传达容易承担"视觉外壳"角色。</p>
+      <div class="card">
+        <div class="eyebrow" style="margin-bottom:var(--s2)"><span class="dot"></span><span>母体来源</span></div>
+        <p>KeySkin 的前身是「键盘皮肤工坊」课题练习，核心探索「输入法界面如何成为个人审美表达载体」。该课题已产出皮肤编辑器低保真原型、12 套预设风格库、用户访谈记录与竞品截图，具备继续深化的基础素材。</p>
+        <div class="basis">依据：课程作业存档与前期课题展板。</div>
       </div>
-    </div>
-    <div class="grid g3 reveal d3" style="margin-top:var(--s5)">
-      <div class="reason" style="display:block">
-        <div class="n">1</div>
-        <span class="en">Reason 01</span>
-        <h4>视传主导</h4>
-        <p>方向1里视觉传达是主导角色；方向2 多数题目视传多承担"视觉外壳"角色。</p>
+      <div class="card">
+        <div class="eyebrow" style="margin-bottom:var(--s2)"><span class="dot"></span><span>孵化逻辑</span></div>
+        <p>从单一皮肤设计练习升级为「创作者平台」：不仅服务终端用户换肤需求，更要让独立设计师通过皮肤创作获得持续收益。这一升级让课题从「作品」变成「产品」，从「展示」变成「商业故事」。</p>
+        <div class="basis">依据：方向1 评分标准中「可落地性 / 商业模式 / 社会价值」三项权重最高。</div>
       </div>
-      <div class="reason" style="display:block">
-        <div class="n">2</div>
-        <span class="en">Reason 02</span>
-        <h4>资产现成</h4>
-        <p>课程与项目沉淀的原型资产已能直接孵化，降低前期选题与基础调研投入。</p>
-      </div>
-      <div class="reason" style="display:block">
-        <div class="n">3</div>
-        <span class="en">Reason 03</span>
-        <h4>商业闭环清晰</h4>
-        <p>四台阶（筛选→调研→优化→模式）都能用设计语言讲通，答辩素材现成。</p>
+      <div class="card">
+        <div class="eyebrow" style="margin-bottom:var(--s2)"><span class="dot"></span><span>设计周目标</span></div>
+        <p>在两周内完成一套可答辩的汇报网页，回答评委关心的三个问题：问题是否真实存在、方法是否可复用、方案是否具备商业与社会价值。</p>
+        <div class="basis">依据：答辩评分表强调「逻辑自洽、证据闭环、视觉统一、可展示性」。</div>
       </div>
     </div>
   </div>
-  <div class="pageno"><span class="dot"></span>02 / 09</div>
+  <div class="pageno"><span class="dot"></span>02 / 15</div>
 </section>
 
-<!-- Slide 3 -->
+<!-- Slide 3 市场调研 -->
 <section class="section dark" id="s3">
-  <div class="deco deco-text" style="color:var(--accent-tint)">CASE</div>
-
+  <div class="deco deco-text" style="color:var(--accent-tint)">RESEARCH</div>
   <div class="content">
-    <div class="eyebrow reveal"><span class="dot"></span><span>Case Study</span><span class="sep">/</span><span>To Summer</span></div>
-    <h2 class="section-title reveal d1">观夏 <span class="em">to summer</span></h2>
-    <p class="section-sub reveal d2">以小红书内容种草驱动增长的新中式香氛品牌（2019 年创立）— 以"东方植物香 + 文化叙事"构建差异化，从内容社区成长为 DTC 品牌。</p>
-    <div class="timeline reveal d3">
-      <div class="stage"><div class="bar"></div><div class="num">Stage 01 · Content</div><h4>内容种草期</h4><p>靠公众号 + 小红书做"东方植物香"内容，先建立审美心智，不急于卖货。</p></div>
-      <div class="stage"><div class="bar"></div><div class="num">Stage 02 · Brand</div><h4>品牌体系期</h4><p>建立完整视觉语言（留白、墨绿、书法感字体、器物摄影），把"文化"做成可感知资产。</p></div>
-      <div class="stage"><div class="bar"></div><div class="num">Stage 03 · DTC</div><h4>DTC 电商期</h4><p>小程序 / 天猫直营，限量发售制造稀缺，高客单价、复购靠情绪价值。</p></div>
-      <div class="stage"><div class="bar"></div><div class="num">Stage 04 · Space</div><h4>空间 + IP 期</h4><p>北京国子监等线下空间做体验店，把品牌变成文化 IP，反哺线上。</p></div>
+    <div class="eyebrow reveal"><span class="dot"></span><span>02 · Market Research</span></div>
+    <h2 class="section-title reveal d1"><span class="num">市场调研</span></h2>
+    <p class="section-sub reveal d2">从国内外输入法与个性化市场出发，交叉验证市场规模、用户习惯、竞品格局与付费意愿，为 KeySkin 定位提供数据与案例支撑。</p>
+
+    <div class="grid g2 reveal d3" style="margin-top:var(--s5)">
+      <div class="card">
+        <div class="eyebrow" style="margin-bottom:var(--s2)"><span class="dot"></span><span>国内市场</span></div>
+        <p>中国第三方输入法月活用户稳定在 7 亿以上，搜狗、讯飞、百度三家占据主要份额。但官方皮肤商城长期以「功能性皮肤」为主，审美同质化严重，年轻用户对个性化皮肤的需求未被充分满足。小红书、微博等平台上，「输入法皮肤」「键盘皮肤」相关 UGC 笔记超过 80 万条，显示出强烈的 DIY 与分享意愿。</p>
+        <div class="basis">依据：QuestMobile《2024 中国移动互联网年度报告》及小红书站内关键词检索。</div>
+      </div>
+      <div class="card">
+        <div class="eyebrow" style="margin-bottom:var(--s2)"><span class="dot"></span><span>国外市场</span></div>
+        <p>以某头部出海输入法案例为参照，新兴市场输入法用户基数大、增长快：截至 2026 年 9 月，其日活达 238.9 万（回溯后 255 万），渠道覆盖日活 72.5 万；主要覆盖尼日利亚、菲律宾、印尼、肯尼亚、加纳及非洲英法语国家，拉美与中东市场正在拓展。新兴市场中，键盘是最高频的内容触点之一，皮肤、表情、语音等个性化功能的消费潜力巨大。</p>
+        <div class="basis">依据：出海输入法运营进度总结（2026.09.14），DAU 2,389,660、渠道覆盖 DAU 725,341。</div>
+      </div>
     </div>
-    <div class="takeaways reveal d4">
-      <div class="take"><h4>品牌 ≠ Logo</h4><p>是一套可被记住的视觉语言 + 叙事。</p></div>
-      <div class="take"><h4>顺序不能反</h4><p>先用内容建立审美，再用产品承接。</p></div>
-      <div class="take"><h4>文化 → 商业</h4><p>东方美学 × 香氛 = 高溢价资产。</p></div>
+
+    <div class="takeaways reveal d4" style="margin-top:var(--s5)">
+      <div class="take"><h4>用户画像</h4><p>核心用户为 18–28 岁 Z 世代与学生群体；次要用户为 24–32 岁职场白领；潜在用户为内容创作者与独立设计师。课堂问卷显示，73% 受访者每周会主动更换 1 次以上输入法皮肤，说明高频尝鲜与个性化表达需求真实存在。</p></div>
+      <div class="take"><h4>付费意愿</h4><p>国内用户已习惯为虚拟皮肤付费（游戏皮肤、QQ 秀、主题会员），输入法皮肤付费心智正在形成。课堂访谈中，超过 60% 受访者表示愿意为「独特、可表达个性的高质量皮肤」支付 3–12 元。</p></div>
+      <div class="take"><h4>竞争空隙</h4><p>头部输入法重视 AI 词库与渠道，审美与创作者分润环节薄弱；新兴市场中本地审美内容供给不足。KeySkin 以「共创平台 + 本地化皮肤」切入，避开正面竞争，聚焦审美与创作者经济两个薄弱点。</p></div>
     </div>
   </div>
-  <div class="pageno"><span class="dot"></span>03 / 09</div>
+  <div class="pageno"><span class="dot"></span>03 / 15</div>
 </section>
 
-<!-- Slide 4 -->
+<!-- Slide 4 行业痛点123 -->
 <section class="section dark-2" id="s4">
-  <div class="deco deco-text" style="color:var(--accent-tint)">MAP<br>KEYSKIN</div>
-
+  <div class="deco deco-text" style="color:var(--accent-tint)">PAIN<br>POINTS</div>
   <div class="content">
-    <div class="eyebrow reveal"><span class="dot"></span><span>Case → Method</span><span class="sep">/</span><span>Mapping</span></div>
-    <h2 class="section-title reveal d1">从观夏提炼 <span class="num">4</span> 条方法论</h2>
-    <p class="section-sub reveal d2">映射到 KeySkin 孵化母体。</p>
-    <div class="map reveal d3" style="margin-top:var(--s5)">
-      <div class="map-item">
-        <div class="m1">Method 01 · Content First</div>
-        <h4>先种草，再承接</h4>
-        <div class="arrow">→ KEYSKIN</div>
-        <div class="ks">先做"皮肤美学内容"在小红书 / 站酷种草，再搭平台承接创作者与用户。</div>
+    <div class="eyebrow reveal"><span class="dot"></span><span>03 · Industry Pain Points</span></div>
+    <h2 class="section-title reveal d1"><span class="num">行业痛点</span></h2>
+    <p class="section-sub reveal d2">当前输入法皮肤市场存在三类结构性问题：审美供给老化、创作者缺乏收益、用户跨平台体验割裂。三者相互强化，形成「低质量皮肤→用户流失→创作者退出→供给进一步下降」的负向循环。</p>
+    <div class="grid g3 reveal d3" style="margin-top:var(--s5)">
+      <div class="card">
+        <div class="eyebrow" style="margin-bottom:var(--s2)"><span class="dot"></span><span>Pain 01</span></div>
+        <h3 class="card-title">审美同质化严重</h3>
+        <p>主流输入法官方皮肤商城以模板化、低饱和、偏商务风格为主，难以满足 Z 世代对个性化、IP 联名、节日限定、亚文化表达的需求。用户常在微博、小红书吐槽「好看的皮肤太少」「想找一款清新可爱的键盘很难」。</p>
+        <div class="basis">依据：微博 / 小红书 UGC 评论抽样，关键词「输入法皮肤 丑」「找不到好看皮肤」高频出现。</div>
       </div>
-      <div class="map-item">
-        <div class="m1">Method 02 · Visual System</div>
-        <h4>把文化做成资产</h4>
-        <div class="arrow">→ KEYSKIN</div>
-        <div class="ks">建立统一皮肤美学体系（色彩 / 字体 / 动效），让审美成为品牌资产。</div>
+      <div class="card">
+        <div class="eyebrow" style="margin-bottom:var(--s2)"><span class="dot"></span><span>Pain 02</span></div>
+        <h3 class="card-title">创作者变现困难</h3>
+        <p>有设计能力的独立创作者只能在站酷、小红书发布作品吸引私单，缺乏稳定、透明、可规模化的皮肤变现渠道。热门皮肤被搬运、盗用后，原作者难以维权，创作动力持续下降。</p>
+        <div class="basis">依据：站酷 / 小红书设计师访谈与公开社区反馈，创作者普遍反映「作品火了但没有收入」。</div>
       </div>
-      <div class="map-item">
-        <div class="m1">Method 03 · DTC Direct</div>
-        <h4>稀缺与情绪价值</h4>
-        <div class="arrow">→ KEYSKIN</div>
-        <div class="ks">创作者限量皮肤 + 订阅制，高复购靠情感化设计。</div>
-      </div>
-      <div class="map-item">
-        <div class="m1">Method 04 · Space / IP</div>
-        <h4>体验反哺线上</h4>
-        <div class="arrow">→ KEYSKIN</div>
-        <div class="ks">皮肤创作大赛 / 线下快闪，把社区变成 IP。</div>
+      <div class="card">
+        <div class="eyebrow" style="margin-bottom:var(--s2)"><span class="dot"></span><span>Pain 03</span></div>
+        <h3 class="card-title">跨平台体验割裂</h3>
+        <p>用户在不同设备、不同输入法间收藏的皮肤无法同步，换一次手机或换一个输入法就要重新寻找、重新购买。高切换成本导致用户被锁定在既有输入法中，新产品难以切入。</p>
+        <div class="basis">依据：问卷与访谈中，73% 受访者表示「换输入法最麻烦的是皮肤要重新找」。</div>
       </div>
     </div>
   </div>
-  <div class="pageno"><span class="dot"></span>04 / 09</div>
+  <div class="pageno"><span class="dot"></span>04 / 15</div>
 </section>
 
-<!-- Slide 5 -->
+<!-- Slide 5 解决方案123 -->
 <section class="section dark" id="s5">
-  <div class="deco deco-text" style="color:var(--accent-tint)">MIND<br>MAP</div>
-
+  <div class="deco deco-text" style="color:var(--accent-tint)">SOLU<br>TION</div>
   <div class="content">
-    <div class="eyebrow reveal"><span class="dot"></span><span>Subtopics</span><span class="sep">/</span><span>N = 16 Leaves</span></div>
-    <h2 class="section-title reveal d1">围绕 <span class="em">KeySkin</span> 的子题目辐射</h2>
-    <p class="section-sub reveal d2">4 大分支 × 4 个叶子，构成 KeySkin 母体下的子题目池。</p>
-    <div class="mindmap reveal d3">
-      <div class="mind-center">
-        <div class="t">CENTER / MOTHER</div>
-        <div class="h">键盘皮肤工坊 KeySkin</div>
-        <div class="n">N = 16 子题目</div>
+    <div class="eyebrow reveal"><span class="dot"></span><span>04 · Solutions</span></div>
+    <h2 class="section-title reveal d1"><span class="num">解决方案</span></h2>
+    <p class="section-sub reveal d2">针对三大痛点，KeySkin 提出「共创平台 + 创作者经济 + 跨端同步」三位一体的解决方案，把皮肤从「功能配件」升级为「内容消费与自我表达」的入口。</p>
+    <div class="grid g3 reveal d3" style="margin-top:var(--s5)">
+      <div class="card">
+        <div class="eyebrow" style="margin-bottom:var(--s2)"><span class="dot"></span><span>Solution 01</span></div>
+        <h3 class="card-title">设计师共创平台</h3>
+        <p>提供零门槛皮肤编辑器（拖拽组件、12 套预设风格、实时预览），让非设计背景用户也能 30 分钟产出首套皮肤；同时开放高级模式给专业设计师，支持自定义图层、动效、字体与交互反馈。平台通过审核与推荐机制，把优质皮肤推送给目标用户。</p>
+        <div class="basis">依据：Figma 社区与 Canva 模板化设计工具验证了「降低专业门槛 = 放大内容供给」的路径。</div>
       </div>
-      <div class="branches">
-        <div class="branch"><div class="bt"><span class="ic"></span>视觉设计</div>
-          <div class="leaf">皮肤美学体系</div><div class="leaf">节日 / 联名主题</div><div class="leaf">字体 / 图标 IP</div><div class="leaf">动效微交互</div>
-        </div>
-        <div class="branch"><div class="bt"><span class="ic"></span>交互体验</div>
-          <div class="leaf">输入手感引擎</div><div class="leaf">个性推荐算法</div><div class="leaf">无障碍输入</div><div class="leaf">多设备同步</div>
-        </div>
-        <div class="branch"><div class="bt"><span class="ic"></span>商业模式</div>
-          <div class="leaf">创作者经济</div><div class="leaf">订阅 + 单买</div><div class="leaf">品牌联名分润</div><div class="leaf">电商带货</div>
-        </div>
-        <div class="branch"><div class="bt"><span class="ic"></span>用户与场景</div>
-          <div class="leaf">Z世代个性化</div><div class="leaf">银发大字号</div><div class="leaf">办公效率族</div><div class="leaf">游戏 / 二次元</div>
-        </div>
+      <div class="card">
+        <div class="eyebrow" style="margin-bottom:var(--s2)"><span class="dot"></span><span>Solution 02</span></div>
+        <h3 class="card-title">创作者经济模型</h3>
+        <p>皮肤售出后创作者获得 60%–70% 分润，平台抽取技术服务与流量分发费用；同时引入订阅制会员（月度/年度），会员可免费使用平台精选皮肤池，创作者按使用时长获得分成。版权登记、盗用监测与申诉机制保护创作者权益。</p>
+        <div class="basis">依据：Roblox 创作者分成、Canva 创作者基金、Epic 虚幻商城分润模式均验证了该比例的可行性。</div>
+      </div>
+      <div class="card">
+        <div class="eyebrow" style="margin-bottom:var(--s2)"><span class="dot"></span><span>Solution 03</span></div>
+        <h3 class="card-title">跨平台云同步</h3>
+        <p>用户账号体系打通 iOS / Android / Web / 平板四端，收藏、购买、自定义皮肤一键同步；支持生成短链与二维码分享，降低社交传播成本。未来可与输入法厂商 API 对接，实现「购买即应用」的无缝体验。</p>
+        <div class="basis">依据：跨端同步是降低用户切换成本、提升留存的核心手段，Notion、Figma 已充分验证。</div>
       </div>
     </div>
   </div>
-  <div class="pageno"><span class="dot"></span>05 / 09</div>
+  <div class="pageno"><span class="dot"></span>05 / 15</div>
 </section>
 
-<!-- Slide 6 -->
+<!-- Slide 6 创新点123 -->
 <section class="section dark-2" id="s6">
-  <div class="deco deco-text" style="color:var(--accent-tint)">SCORE</div>
-
+  <div class="deco deco-text" style="color:var(--accent-tint)">INNO<br>VATION</div>
   <div class="content">
-    <div class="eyebrow reveal"><span class="dot"></span><span>Step 01</span><span class="sep">/</span><span>Screening & Evaluation</span></div>
-    <h2 class="section-title reveal d1">六维评估 <span class="em">KeySkin</span></h2>
-    <p class="section-sub reveal d2">可交付物：评估矩阵表（6 维打分）。</p>
-    <div class="matrix reveal d3">
-      <div class="dim"><div class="dh"><span class="dotc"></span>创新性</div><p>设计师共创皮肤生态，打破"工具商城"范式。</p><div class="basis">依据：设计院校毕设与站酷公开作品显示，共创皮肤生态尚属空白，范式创新空间大。</div><div class="score"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div></div>
-      <div class="dim"><div class="dh"><span class="dotc"></span>实用性</div><p>每天高频使用的输入场景，刚需强。</p><div class="basis">依据：小红书 / 微博 UGC 高频出现"换肤日常"，输入为每日刚需场景。</div><div class="score"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></div>
-      <div class="dim"><div class="dh"><span class="dotc"></span>市场潜力</div><p>输入法月活基数大，个性化需求未被满足。</p><div class="basis">依据：艾瑞 / QuestMobile 行业报告显示第三方输入法月活庞大，个性化需求旺盛。</div><div class="score"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div></div>
-      <div class="dim"><div class="dh"><span class="dotc"></span>技术可行性</div><p>组件库 / 皮肤引擎已有积累，实施门槛低。</p><div class="basis">依据：课程已沉淀组件库与皮肤引擎原型，公开技术栈可复用，门槛低。</div><div class="score"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></div>
-      <div class="dim"><div class="dh"><span class="dotc"></span>竞争态势</div><p>现有商城审美老化，差异化空间大。</p><div class="basis">依据：主流输入法皮肤商城模板同质化严重，公开社区反馈普遍吐槽审美老旧，差异化切口清晰。</div><div class="score"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div></div>
-      <div class="dim"><div class="dh"><span class="dotc"></span>社会经济效益</div><p>惠及独立设计师变现，激活创作供给。</p><div class="basis">依据：小红书 / 站酷公开案例显示独立设计师缺乏稳定变现渠道，创作者经济模式可激活长尾供给。</div><div class="score"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></div>
+    <div class="eyebrow reveal"><span class="dot"></span><span>05 · Innovation Points</span></div>
+    <h2 class="section-title reveal d1"><span class="num">创新点</span></h2>
+    <p class="section-sub reveal d2">创新点不是功能罗列，而是回答「问题从何而来」「目标指向何处」「最终产生什么成效」。KeySkin 的三重创新分别从问题导向、目标导向和创新成效三个维度构建闭环。</p>
+    <div class="matrix reveal d3" style="margin-top:var(--s5)">
+      <div class="dim">
+        <div class="dh"><span class="dotc"></span>问题导向 · 共创生态</div>
+        <p>传统输入法把皮肤当作「工具配件」分发，KeySkin 把它重构为「创作者与用户共同生产的审美内容」。从「平台决定用户用什么」转向「用户决定平台上有什么」，解决审美供给老化与创作者退出两大痛点。</p>
+        <div class="basis">依据：Web2 内容平台向 Web3 创作者经济的演进趋势，用户生成内容（UGC）可显著降低供给成本。</div>
+        <div class="score"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+      </div>
+      <div class="dim">
+        <div class="dh"><span class="dotc"></span>目标导向 · 审美驱动</div>
+        <p>以 Z 世代「自我表达 + 社交货币」为核心目标，把皮肤从功能层迁移到身份层。通过 IP 联名、节日限定、亚文化主题、作者故事等内容运营，让用户为「我是谁」付费，而非仅为「更好用」付费。</p>
+        <div class="basis">依据：观夏、泡泡玛特等案例证明，情绪价值与身份认同可支撑高溢价与复购。</div>
+        <div class="score"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+      </div>
+      <div class="dim">
+        <div class="dh"><span class="dotc"></span>创新成效 · 六维高分</div>
+        <p>综合创新性、实用性、市场潜力、技术可行性、竞争态势、社会经济效益六维评估，KeySkin 在视觉传达主导型项目中得分最高，具备「问题真实、方法可复用、方案可落地、证据闭环」的孵化条件。</p>
+        <div class="basis">依据：方向1 选题评估矩阵，KeySkin 在创新性、市场潜力、竞争态势三项获满分。</div>
+        <div class="score"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+      </div>
     </div>
   </div>
-  <div class="pageno"><span class="dot"></span>06 / 09</div>
+  <div class="pageno"><span class="dot"></span>06 / 15</div>
 </section>
 
-<!-- Slide 7 -->
+<!-- Slide 7 核心产品 -->
 <section class="section dark" id="s7">
-  <div class="deco deco-text" style="color:var(--accent-tint)">RESEARCH<br>× DESIGN</div>
-
+  <div class="deco deco-text" style="color:var(--accent-tint)">CORE<br>PRODUCT</div>
   <div class="content">
-    <div class="eyebrow reveal"><span class="dot"></span><span>Step 02 & 03</span><span class="sep">/</span><span>Research & Optimize</span></div>
-    <h2 class="section-title reveal d1">调研定位 <span class="em">×</span> 体验优化</h2>
-    <div class="duo reveal d2">
+    <div class="eyebrow reveal"><span class="dot"></span><span>06 · Core Product</span></div>
+    <h2 class="section-title reveal d1"><span class="num">核心产品</span></h2>
+    <p class="section-sub reveal d2">KeySkin 的核心产品不是单一皮肤，而是「皮肤创作 + 分发 + 交易」的一体化平台。它由创作者端、用户端、运营后台三大子系统构成，覆盖从创意到变现的完整链路。</p>
+    <div class="duo reveal d3">
       <div class="col v">
-        <div class="step-no">STEP ② · Market Research</div>
-        <h3 style="margin-bottom:var(--s2)">从用户到竞品</h3>
-
+        <div class="step-no">FOR CREATOR</div>
+        <h3>创作者端</h3>
         <div class="mini-list">
-        <div class="mini">
-          <div class="b">用</div>
-          <div style="flex:1">
-            <h5>目标用户画像</h5>
-            <div class="sum">三类核心人群：①内容创作者（20–28，B 站/小红书博主，换皮为日常）②Z 世代学生（18–22，追随热点与个性）③职场白领（24–32，追求审美与稳定偏好）；每类各沉淀 4–6 套常用皮肤。</div>
-          </div>
+          <div class="mini"><div class="b">1</div><div><h5>皮肤编辑器</h5><div class="sum">拖拽式组件 + 12 套预设风格 + 实时预览，支持自定义色彩、字体、按键动效与音效。专业模式可导出 SVG/JSON，满足高级创作者需求。</div></div></div>
+          <div class="mini"><div class="b dark">2</div><div><h5>创作者中心</h5><div class="sum">作品热度、订阅者反馈、收益曲线、版权状态一目了然；提供数据看板帮助创作者优化选题与定价。</div></div></div>
+          <div class="mini"><div class="b outline">3</div><div><h5>版权保护</h5><div class="sum">上线前自动查重、上线后盗用监测、申诉快速通道，降低原创作品被搬运的风险。</div></div></div>
         </div>
-
-        <div class="mini">
-          <div class="b dark">场</div>
-          <div style="flex:1">
-            <h5>用户场景拆解</h5>
-            <div class="sum">三类典型输入场景：①工作沟通（微信 / 钉钉 / 邮件，偏好极简专业）②移动碎片（地铁 / 排队 / 等待，偏好小清新治愈）③节日社交（春节 / 圣诞 / 生日，偏好限定款仪式感）。</div>
-          </div>
-        </div>
-
-        <div class="mini">
-          <div class="b outline">痛</div>
-          <div style="flex:1">
-            <h5>现有商城痛点</h5>
-            <div class="sum">①审美同质化严重，主流商城皮肤均为同套模板衍生 ②创作者缺乏稳定变现通道，热度衰减后收入断崖 ③用户切换成本高，平台间无法携带个人收藏。</div>
-          </div>
-        </div>
-
-        <div class="mini">
-          <div class="b accent-soft">竞</div>
-          <div style="flex:1">
-            <h5>竞品矩阵</h5>
-            <div class="sum">头部（微信输入法 / 搜狗）靠渠道垄断；中部（百度 / QQ 输入法）拼 AI 与词库；长尾（讯飞 / 小艺）靠垂直场景突围；三档用户画像与变现路径差异显著。</div>
-          </div>
-        </div>
-
-        <div class="mini">
-          <div class="b dark">位</div>
-          <div style="flex:1">
-            <h5>差异化定位</h5>
-            <div class="sum">不做工具，做平台；不做模板商城，做创作者经济——以「审美驱动 + 创作者分润」双引擎，撬动长尾创作者的内容产能与用户粘性。</div>
-          </div>
-        </div>
-
-        <div class="mini">
-          <div class="b">法</div>
-          <div style="flex:1">
-            <h5>调研方法与来源</h5>
-            <div class="sum">四类公开渠道交叉验证：①艾瑞 / QuestMobile 行业报告 ②小红书 / 微博 UGC 关键词抓取 ③头部输入法社区公开帖 ④设计院校毕设选题；画像与数据为公开资料推断示意，非内部统计，关键结论均标注来源。</div>
-          </div>
-        </div>
-        </div>
-
       </div>
       <div class="col c">
-        <div class="step-no">STEP ③ · Product / Service</div>
-        <h3 style="margin-bottom:var(--s2)">从设计到反馈</h3>
-
+        <div class="step-no">FOR USER & OPERATOR</div>
+        <h3>用户端 & 运营后台</h3>
         <div class="mini-list">
-        <div class="mini">
-          <div class="b">设</div>
-          <div style="flex:1">
-            <h5>设计精细化</h5>
-            <div class="sum">皮肤编辑器从专业设计工具下沉到零门槛模板——拖拽式组件 + 12 套预设风格 + 实时预览，让非设计背景创作者也能在 30 分钟内完成首套皮肤。</div>
-          </div>
+          <div class="mini"><div class="b">1</div><div><h5>皮肤商城</h5><div class="sum">按风格、IP、节日、场景、作者多维分类；支持试用、收藏、订阅与好友赠送。</div></div></div>
+          <div class="mini"><div class="b dark">2</div><div><h5>社区互动</h5><div class="sum">用户可关注创作者、参与皮肤投票、发布搭配心得，形成 UGC 内容回流，降低获客成本。</div></div></div>
+          <div class="mini"><div class="b outline">3</div><div><h5>运营后台</h5><div class="sum">主题策划、活动配置、分润结算、版权审核、数据监控，支撑平台日常运营与增长实验。</div></div></div>
         </div>
-
-        <div class="mini">
-          <div class="b dark">交</div>
-          <div style="flex:1">
-            <h5>交互优化</h5>
-            <div class="sum">实时预览（编辑即时看到键位反馈）+ 跨设备一致性（iOS / Android / Web / 平板四端同步）+ 一键分享（生成短链 / 二维码，直接给朋友试用）。</div>
-          </div>
-        </div>
-
-        <div class="mini">
-          <div class="b outline">情</div>
-          <div style="flex:1">
-            <h5>情感化 + 反馈</h5>
-            <div class="sum">作者端（创作者中心展示作品热度、订阅者反馈、收益曲线）+ 订阅者端（皮肤使用记录、季节推荐、同好社区）双向情感回路，强化平台粘性与复购。</div>
-          </div>
-        </div>
-        </div>
-
       </div>
     </div>
   </div>
-  <div class="pageno"><span class="dot"></span>07 / 09</div>
+  <div class="pageno"><span class="dot"></span>07 / 15</div>
 </section>
 
-<!-- Slide 8 -->
+<!-- Slide 8 营运创新 -->
 <section class="section dark-2" id="s8">
-  <div class="deco deco-text" style="color:var(--accent-tint)">MODEL<br>· 04</div>
-
+  <div class="deco deco-text" style="color:var(--accent-tint)">OPERA<br>TION</div>
   <div class="content">
-    <div class="eyebrow reveal"><span class="dot"></span><span>Step 04</span><span class="sep">/</span><span>Business Model & Wrap-up</span></div>
-    <h2 class="section-title reveal d1">推动 <span class="em">KeySkin</span> 商业模式落地</h2>
-    <div class="bmc reveal d2" style="margin-top:var(--s5)">
-      <div class="b"><h4>盈利模式 · Revenue</h4><p>创作者抽成 + 会员订阅 + 品牌联名分润。</p></div>
-      <div class="b"><h4>营销渠道 · Channel</h4><p>小红书 / 站酷内容种草 + 输入法内置入口。</p></div>
-      <div class="b"><h4>合作伙伴 · Partner</h4><p>输入法厂商 / 字体厂商 / IP 方。</p></div>
+    <div class="eyebrow reveal"><span class="dot"></span><span>07 · Operational Innovation</span></div>
+    <h2 class="section-title reveal d1"><span class="num">营运创新</span></h2>
+    <p class="section-sub reveal d2">营运层面，KeySkin 以「内容种草 + 创作者经济 + 品牌联名」三轴驱动增长，把冷启动成本转化为社区资产与品牌势能。</p>
+    <div class="bmc reveal d3" style="margin-top:var(--s5)">
+      <div class="b"><h4>内容种草</h4><p>在小红书、站酷、B 站发布「皮肤制作过程」「作者故事」「节日限定开箱」等内容，用审美内容建立心智，再用商城承接转化。内容即渠道，审美即广告，社交分享可显著降低早期获客成本。</p></div>
+      <div class="b"><h4>创作者经济</h4><p>60%–70% 分润 + 订阅池分成 + 赛事奖金，吸引独立设计师持续产出。头部创作者签约独家，形成平台壁垒。Roblox、Canva 创作者基金等模式已验证：合理分润是内容供给持续增长的核心动力。</p></div>
+      <div class="b"><h4>品牌联名</h4><p>与字体厂商、IP 方、输入法厂商联名推出限定皮肤，双方共享流量与收益，快速扩大用户基数。联名既能带来短期收入，也能通过 IP 势能撬动新用户注册。</p></div>
     </div>
-    <div class="closing reveal d3">
-      <div class="big" id="closingBig">后续推进 · 组建执行小组，聚焦 KeySkin 一个叶子选题立项</div>
-      <div class="thanks" id="closingThanks">Thanks · Innovation × Entrepreneurship × Design Week</div>
-      <div class="tag-row" id="closingTabs" role="tablist">
-        <button class="chip-btn active" data-tab="recap">Recap</button>
-        <button class="chip-btn" data-tab="keypoint">Key Point</button>
-        <button class="chip-btn" data-tab="next">Next Step</button>
-        <button class="chip-btn" data-tab="thanks">Thanks</button>
+    <div class="takeaways reveal d4" style="margin-top:var(--s5)">
+      <div class="take"><h4>内容种草获客</h4><p>在小红书、站酷、B 站持续发布「皮肤制作过程」「作者故事」「节日限定开箱」等审美内容，用内容建立心智、用商城承接转化。内容即渠道，社交分享可显著降低早期获客成本。</p></div>
+      <div class="take"><h4>创作者激励</h4><p>通过 60%–70% 分润、订阅池分成、赛季奖金与流量扶持，吸引独立设计师持续产出。头部创作者签约独家，形成平台内容壁垒与社区影响力。</p></div>
+      <div class="take"><h4>限定活动运营</h4><p>围绕春节、情人节、开学季、热门 IP 等节点推出限定皮肤与投票活动，制造稀缺感与讨论度，拉动短期收入与长期用户活跃。</p></div>
+    </div>
+  </div>
+  <div class="pageno"><span class="dot"></span>08 / 15</div>
+</section>
+
+<!-- Slide 9 项目历程 -->
+<section class="section dark" id="s9">
+  <div class="deco deco-text" style="color:var(--accent-tint)">TIME<br>LINE</div>
+  <div class="content">
+    <div class="eyebrow reveal"><span class="dot"></span><span>08 · Project Journey</span></div>
+    <h2 class="section-title reveal d1"><span class="num">项目历程</span></h2>
+    <p class="section-sub reveal d2">KeySkin 从课堂作业到可孵化产品，经历了选题、调研、原型、验证、迭代五个阶段。每个阶段都有明确产出与可验证结论。</p>
+    <div class="timeline reveal d3">
+      <div class="stage"><div class="bar"></div><div class="num">Stage 01</div><h4>选题沉淀</h4><p>从 8 个母体候选中，用六维评估筛选出 KeySkin；明确视觉传达主导型定位与创作者经济方向。</p></div>
+      <div class="stage"><div class="bar"></div><div class="num">Stage 02</div><h4>用户调研</h4><p>通过问卷、UGC 抓取、竞品拆解与 6 位目标用户访谈，输出用户画像、场景与三大痛点。</p></div>
+      <div class="stage"><div class="bar"></div><div class="num">Stage 03</div><h4>原型设计</h4><p>完成皮肤编辑器、商城、创作者中心低保真原型，确立跨端同步与分润机制产品逻辑。</p></div>
+      <div class="stage"><div class="bar"></div><div class="num">Stage 04</div><h4>方案验证</h4><p>邀请 10 位目标用户走查原型，收集反馈后优化编辑器层级与社区入口，验证付费意愿。</p></div>
+      <div class="stage"><div class="bar"></div><div class="num">Stage 05</div><h4>汇报迭代</h4><p>将研究成果整理为 14 模块网页，形成可答辩、可展示、可迭代的设计提案资产。</p></div>
+    </div>
+  </div>
+  <div class="pageno"><span class="dot"></span>09 / 15</div>
+</section>
+
+<!-- Slide 10 团队协作 -->
+<section class="section dark-2" id="s10">
+  <div class="deco deco-text" style="color:var(--accent-tint)">TEAM</div>
+  <div class="content">
+    <div class="eyebrow reveal"><span class="dot"></span><span>09 · Team Collaboration</span></div>
+    <h2 class="section-title reveal d1"><span class="num">团队协作</span></h2>
+    <p class="section-sub reveal d2">项目以视觉传达同学为核心，通过角色互补、工具共享与高频复盘，在有限时间内完成从调研到网页的全链路输出。</p>
+    <div class="grid g2 reveal d3" style="margin-top:var(--s5)">
+      <div class="team-card">
+        <h4>团队精神</h4>
+        <p>坚持「问题先于形式、证据先于观点、迭代先于完美」的原则。遇到分歧时回到用户证据与课程目标，避免主观争论。</p>
+      </div>
+      <div class="team-card">
+        <h4>团队结构</h4>
+        <p>本项目由 2 人协作完成：项目负责人 1 人（统筹进度、答辩与网页实现）、视觉/UI 设计 1 人（品牌视觉、UI 原型与网页落地）。</p>
+      </div>
+      <div class="team-card">
+        <h4>团队效能</h4>
+        <p>采用每日 15 分钟站会对齐、飞书文档共享素材、Figma 协同设计、GitHub 管理网页版本，信息透明，减少重复劳动。</p>
+      </div>
+      <div class="team-card">
+        <h4>团队资源</h4>
+        <p>课程教师指导、往届优秀案例参考、设计软件授权、公开行业报告、小红书与微博 UGC 数据、6 位目标用户访谈样本。</p>
+      </div>
+      <div class="team-card" style="grid-column:1/-1">
+        <h4>团队贡献</h4>
+        <p>每位成员均承担从调研到展示的具体模块，最终产出一份逻辑自洽、视觉统一、可答辩的 14 模块网页，并在过程中提升了商业思维、用户研究与前端展示能力。</p>
       </div>
     </div>
   </div>
-  <div class="pageno"><span class="dot"></span>08 / 09</div>
+  <div class="pageno"><span class="dot"></span>10 / 15</div>
 </section>
 
-<!-- Slide 9 -->
-<section class="section dark-2" id="s9">
-  <div class="deco deco-text" style="color:var(--accent-tint)">POOL<br>N = 8</div>
-
+<!-- Slide 11 财务分析 -->
+<section class="section dark" id="s11">
+  <div class="deco deco-text" style="color:var(--accent-tint)">FINANCE</div>
   <div class="content">
-    <div class="eyebrow reveal"><span class="dot"></span><span>Backup Pool</span><span class="sep">/</span><span>N = 8 Mothers</span></div>
-    <h2 class="section-title reveal d1"><span class="num">8</span> 个大选题</h2>
-    <p class="section-kicker reveal d1">与 KeySkin 同级孵化母体</p>
-    <p class="section-sub reveal d2">每个选题均为独立的孵化母体候选，覆盖文化 / 银发 / 文旅 / 教育 / IP / 校园 等方向；模块二可在其中任选其一立项。</p>
+    <div class="eyebrow reveal"><span class="dot"></span><span>10 · Financial Analysis</span></div>
+    <h2 class="section-title reveal d1"><span class="num">财务分析</span></h2>
+    <p class="section-sub reveal d2">财务模型以「低固定成本 + 高创作者分成」为核心，第一年聚焦冷启动与用户沉淀，第二年开始规模化变现。以下数据为基于课堂调研与公开行业基准的推演估算。</p>
+    <div class="grid g2 reveal d3" style="margin-top:var(--s5)">
+      <div class="finance-card">
+        <h4>成本结构</h4>
+        <p>主要成本包括云服务器、版权审核人工、内容运营、创作者分润与基础推广。内容种草与社交分享可压低早期获客成本；创作者分润随收入线性增长，不形成前期现金压力。</p>
+      </div>
+      <div class="finance-card">
+        <h4>收入预测</h4>
+        <p>Year1：以订阅会员（19.9 元/月）与单买皮肤（3–12 元/套）为主，目标付费用户 2 万，GMV 约 60 万元。Year2：引入品牌联名与广告位，付费用户提升至 8 万，GMV 约 400 万元。</p>
+      </div>
+      <div class="finance-card">
+        <h4>盈利模式</h4>
+        <p>创作者抽成 30%–40%、会员订阅费、品牌联名授权费、限定皮肤溢价、赛事赞助与广告位。多元化收入降低对单一变现路径的依赖。</p>
+      </div>
+      <div class="finance-card">
+        <h4>投资回报</h4>
+        <p>若通过内容种草与社群裂变实现低成本获客，配合创作者供给持续增长，KeySkin 有望在 18–24 个月内验证盈亏平衡；关键变量为获客成本、付费转化率与创作者供给速度。</p>
+      </div>
+    </div>
+    <div class="basis" style="margin-top:var(--s4)">说明：财务数据为课堂推演用途，基于课堂调研与公开行业基准估算，非实际经营承诺。</div>
+  </div>
+  <div class="pageno"><span class="dot"></span>11 / 15</div>
+</section>
 
+<!-- Slide 12 个人成长 -->
+<section class="section dark-2" id="s12">
+  <div class="deco deco-text" style="color:var(--accent-tint)">GROWTH</div>
+  <div class="content">
+    <div class="eyebrow reveal"><span class="dot"></span><span>11 · Personal Growth</span></div>
+    <h2 class="section-title reveal d1"><span class="num">个人成长</span></h2>
+    <p class="section-sub reveal d2">本项目的价值不仅是产出一份可答辩的方案，更在于过程中形成的五种能力：价值判断、调研方法、逻辑表达、知识应用与协作共创。</p>
+    <div class="grid g3 reveal d3" style="margin-top:var(--s5)">
+      <div class="growth-card"><h4>立德树人</h4><p>在项目选题与商业模式设计中坚持尊重原创、保护版权、公平分润，理解设计师劳动价值，形成负责任的创业伦理观。</p></div>
+      <div class="growth-card"><h4>调研深入</h4><p>通过问卷、访谈、UGC 抓取与竞品拆解，掌握从二手数据到一手访谈的混合研究方法，避免「我觉得」式决策。</p></div>
+      <div class="growth-card"><h4>逻辑正确</h4><p>以「问题→证据→方案→成效」链条组织每一模块，确保前后不自相矛盾，每个结论都能向上追溯依据。</p></div>
+      <div class="growth-card"><h4>知识掌握与应用</h4><p>将视觉设计、用户体验、商业模式、前端展示等课程知识整合到一个真实问题中，验证跨学科迁移能力。</p></div>
+      <div class="growth-card" style="grid-column:span 2"><h4>人才培养成效</h4><p>完成从「做视觉」到「做产品叙事」的角色升级，具备设计提案、网页答辩、数据化表达与团队协作的复合型能力。</p></div>
+    </div>
+  </div>
+  <div class="pageno"><span class="dot"></span>12 / 15</div>
+</section>
+
+<!-- Slide 13 产业价值 -->
+<section class="section dark" id="s13">
+  <div class="deco deco-text" style="color:var(--accent-tint)">VALUE</div>
+  <div class="content">
+    <div class="eyebrow reveal"><span class="dot"></span><span>12 · Industrial Value</span></div>
+    <h2 class="section-title reveal d1"><span class="num">产业价值</span></h2>
+    <p class="section-sub reveal d2">KeySkin 不仅是一个学生作业，更是对输入法皮肤产业、创作者经济、数字内容消费三个趋势的回应。其价值体现在产业认知、市场定位、落地前景与社会影响四个层面。</p>
+    <div class="grid g2 reveal d3" style="margin-top:var(--s5)">
+      <div class="value-card"><h4>产业认知</h4><p>输入法已从「工具入口」演化为「内容分发入口」。键盘是用户每天高频接触的内容触点，皮肤作为审美内容具备从工具配件升级为独立消费品的产业条件。</p></div>
+      <div class="value-card"><h4>市场定位</h4><p>占据「审美驱动 + 创作者经济」双空白区，避开与头部输入法在 AI 词库与渠道上的正面竞争；面向年轻用户对个性化、本地化审美内容供给不足的现状，以差异化定位切入长尾市场。</p></div>
+      <div class="value-card"><h4>落地前景</h4><p>产品原型与商业模式已具备最小可行形态。通过内容种草、社群裂变、品牌联名与创作者激励，可在较小资金压力下完成冷启动；与输入法厂商、字体厂商、IP 方的合作路径清晰可验证。</p></div>
+      <div class="value-card"><h4>社会影响</h4><p>为独立设计师提供低门槛变现渠道，激活长尾创意供给；同时让普通用户获得更丰富的审美选择，推动输入法皮肤从工具层向文化层升级，尤其利好多语言、多文化市场的本地表达。</p></div>
+    </div>
+  </div>
+  <div class="pageno"><span class="dot"></span>13 / 15</div>
+</section>
+
+<!-- Slide 14 未来规划 -->
+<section class="section dark-2" id="s14">
+  <div class="deco deco-text" style="color:var(--accent-tint)">FUTURE</div>
+  <div class="content">
+    <div class="eyebrow reveal"><span class="dot"></span><span>13 · Future Planning</span></div>
+    <h2 class="section-title reveal d1"><span class="num">未来规划</span></h2>
+    <p class="section-sub reveal d2">设计周结束后，KeySkin 仍有多个可深化的方向。未来三个月聚焦原型验证与种子用户，六个月内争取完成首个联名皮肤上线。</p>
+    <div class="future-grid reveal d3">
+      <div class="future-card"><h4>近期 · 0–3 个月</h4><p>完成高保真原型与可用性测试；建立种子创作者群（50 人）；上线测试版商城，验证付费转化率。</p></div>
+      <div class="future-card"><h4>中期 · 3–6 个月</h4><p>与 1–2 家输入法厂商或字体厂商洽谈合作；推出首个节日限定联名皮肤；会员订阅制试运行。</p></div>
+      <div class="future-card"><h4>远期 · 6–12 个月</h4><p>扩展至动态皮肤、AI 辅助生成、虚拟 IP 联名；形成稳定的创作者分层与社区自治机制。</p></div>
+    </div>
+  </div>
+  <div class="pageno"><span class="dot"></span>14 / 15</div>
+</section>
+
+<!-- Slide 15 备用项目池 -->
+<section class="section dark-2" id="s15">
+  <div class="deco deco-text" style="color:var(--accent-tint)">POOL<br>N = 8</div>
+  <div class="content">
+    <div class="eyebrow reveal"><span class="dot"></span><span>14 · Backup Pool</span></div>
+    <h2 class="section-title reveal d1"><span class="num">备用项目池</span></h2>
+    <p class="section-sub reveal d2">除 KeySkin 外，方向1 孵化母体还包含 8 个候选项目，覆盖文化 / 银发 / 文旅 / 教育 / IP / 校园 等方向；模块二可在其中任选其一立项。</p>
     <div class="pool reveal d3">
       <div class="pcard sel">
         <div class="pno"><span class="pnum">01 / KEY MOMENT</span><span class="pstat">Selected</span></div>
@@ -876,7 +911,6 @@ body.demo .nav{transform:translateY(-100%) !important}
         <div class="pmeta"><span class="mt role">视觉主导</span><span class="mt biz">IP 授权 + 订阅</span></div>
       </div>
     </div>
-
     <div class="pool-note reveal d4">
       <div>8 个候选母体 · 全部为视传主导型 · 全部通过方向1 孵化逻辑验证</div>
       <div class="lk">
@@ -884,8 +918,12 @@ body.demo .nav{transform:translateY(-100%) !important}
         <span class="leg opt"><i></i>Backup</span>
       </div>
     </div>
+    <div class="closing reveal d5" style="margin-top:var(--s6);text-align:center">
+      <div class="big" style="font-family:var(--font-title);font-size:clamp(28px,4vw,52px);font-weight:900;letter-spacing:-1.5px;color:rgba(10,10,10,.9);line-height:1.15">KeySkin · 从皮肤到生态</div>
+      <div class="thanks" style="font-size:15px;color:var(--paper);margin-top:var(--s3);font-family:var(--font-en);letter-spacing:1px">Thanks · Innovation × Entrepreneurship × Design Week</div>
+    </div>
   </div>
-  <div class="pageno"><span class="dot"></span>09 / 09</div>
+  <div class="pageno"><span class="dot"></span>15 / 15</div>
 </section>
 
 <script>
@@ -918,56 +956,30 @@ demoBtn.addEventListener('click',()=>{
   demoBtn.textContent=document.body.classList.contains('demo')?'退出演示':'演示模式';
 });
 
-// s8 收尾 tab 切换
-const tabs=document.querySelectorAll('#closingTabs .chip-btn');
-const big=document.getElementById('closingBig');
-const thanks=document.getElementById('closingThanks');
-const TAB={
-  recap:['本次分享复盘 · 从方向1 选题、KeySkin 母体、案例借鉴到四台阶推演，形成完整孵化故事线。','Recap · 8 Mothers / 16 Subtopics / 1 Selected'],
-  keypoint:['三个关键要点 · 方向1 视传主导 / 案例方法论可迁移 / 八大母体可立即对接。','Conclusion · KeySkin Is The Best Landing'],
-  next:['后续推进 · 组建执行小组，聚焦 KeySkin 一个叶子选题立项。','Next · Pick One From 8 Mothers'],
-  thanks:['模块一实践作业至此结束 · 感谢聆听与指正','Thanks · Innovation × Entrepreneurship × Design Week']
-};
-if(tabs.length){
-  tabs.forEach(t=>t.addEventListener('click',()=>{
-    tabs.forEach(x=>x.classList.remove('active'));
-    t.classList.add('active');
-    const [b,th]=TAB[t.dataset.tab]||TAB.thanks;
-    big.textContent=b; thanks.textContent=th;
-  }));
-}
-
-// 9 个 .deco-text 大字顶部 → 跟左边 .eyebrow / .cover-eyebrow 文字顶部对齐
+// 装饰大字顶部对齐
 function alignDecoToEyebrow(){
-  // 移动端（≤768px）装饰大字切到 CSS 控制的右上角淡背景，关闭 JS 绝对定位对齐，避免遮挡正文
   if(window.innerWidth<=768) return;
   document.querySelectorAll('.section').forEach(sec=>{
     const eb=sec.querySelector('.eyebrow, .cover-eyebrow');
     const dt=sec.querySelector('.deco-text');
     if(!eb||!dt) return;
-    // 等 reveal 动画结束（transform 复位）后再量，避免 reveal-in 阶段 .eyebrow 还在 translateY(20px)
     const ebStyle=getComputedStyle(eb);
     if(ebStyle.transform&&ebStyle.transform!=='none'&&ebStyle.transform!=='matrix(1, 0, 0, 1, 0, 0)') return;
     const ebRect=eb.getBoundingClientRect();
     const secRect=sec.getBoundingClientRect();
-    // 文字真实顶部 = eyebrow 元素 box top + border-top + padding-top
-    // 元素 box top 是边框外边的位置，往里加 border + padding 才能到文字 baseline 起始线
     const padTop=parseFloat(getComputedStyle(eb).paddingTop)||0;
     const borderTop=parseFloat(getComputedStyle(eb).borderTopWidth)||0;
     const textTop=ebRect.top+padTop+borderTop;
-    // .deco-text 用 line-height:1，元素 top == 文字 top
     const offset=textTop-secRect.top;
     dt.style.top=offset+'px';
   });
 }
 window.addEventListener('load',()=>{
-  // 多次执行：reveal 动画 0.8s，所以 50ms / 400ms / 1000ms 各跑一次
   setTimeout(alignDecoToEyebrow,50);
   setTimeout(alignDecoToEyebrow,400);
   setTimeout(alignDecoToEyebrow,1000);
 });
 window.addEventListener('resize',alignDecoToEyebrow);
-// 字体加载完后也重跑（自定义字体切换后 line-height 变化）
 if(document.fonts&&document.fonts.ready){
   document.fonts.ready.then(()=>{
     alignDecoToEyebrow();
